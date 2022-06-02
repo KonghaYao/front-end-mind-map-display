@@ -1,11 +1,12 @@
 import { render, Show } from "solid-js/web";
-import { Route } from "./router/index";
+import { Route, router } from "./router/index";
 import { loadLink } from "./utils/loadScript";
 import { MainPage } from "./pages/MainPage";
 import "./style/global.css";
 import { BookType } from "./pages/BookType";
 import { repo } from "./store";
 import { FileType } from "./pages/FileType";
+import { onMount } from "solid-js";
 /** 加载loading 的 WebComponent */
 await import("wc-spinners");
 
@@ -13,10 +14,14 @@ await import("wc-spinners");
 await loadLink(
     "https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.73/dist/themes/light.css"
 );
-/* Material Icon 字体图标 */
-await loadLink("https://fonts.googleapis.com/css2?family=Material Icons");
+router.notFound(() => {
+    router.navigate("/index");
+});
 
 const App = () => {
+    onMount(() => {
+        router.navigate(location.hash.slice(1));
+    });
     return (
         <section className="h-screen flex flex-col relative font-song select-none ">
             <header className="flex w-full justify-center bg-white ">

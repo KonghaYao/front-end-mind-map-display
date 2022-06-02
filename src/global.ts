@@ -4,7 +4,7 @@ export const isDev = () =>
 /* 项目文件的 CDN 目录 */
 export const CDN = isDev()
     ? globalThis.location.href.split("#")[0]
-    : "https://fastly.jsdelivr.net/gh/konghayao/Demo-Page/index.html";
+    : "https://fastly.jsdelivr.net/gh/konghayao/front-end-mind-map-display/index.html";
 
 // NPM 插件 CDN 的根
 export const NPM = "https://fastly.jsdelivr.net/npm/";

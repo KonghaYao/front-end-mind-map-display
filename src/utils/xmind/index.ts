@@ -13,9 +13,9 @@ interface XMindEmbedViewerState {
 }
 
 export class XMindEmbedViewer {
-    protected iframeController: IframeController;
-    protected iframeEventChannelController: IframeEventChannelController;
-    protected internalState: XMindEmbedViewerState = {
+    iframeController: IframeController;
+    iframeEventChannelController: IframeEventChannelController;
+    internalState: XMindEmbedViewerState = {
         sheets: [],
         zoomScale: 100,
         currentSheetId: "",

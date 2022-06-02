@@ -12,12 +12,6 @@ export const router = new Navigo("/", {
     hash: true,
 });
 
-router.on("*", (route) => {
-    route &&
-        routerHelper.history.at(-1) !== route.hashString &&
-        route.hashString &&
-        routerHelper.history.push(route.hashString);
-});
 export const routerHelper = {
     history: [] as string[],
     back() {
