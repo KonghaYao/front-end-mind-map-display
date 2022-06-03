@@ -13,7 +13,7 @@ const findRoot = () => {
 export const BookType = () => {
     const [root, path] = findRoot();
     return (
-        <section className="h-screen flex flex-col whitespace-pre-wrap relative font-song select-none ">
+        <section className="h-full flex flex-col whitespace-pre-wrap relative font-song select-none ">
             <div
                 onclick={() => {
                     const Path = path.slice(0, path.length - 2).join("/");

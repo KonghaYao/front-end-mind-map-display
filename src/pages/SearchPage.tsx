@@ -27,7 +27,7 @@ export const SearchPage = () => {
         <>
             <xy-input
                 placeholder="请使用正则表达式搜索文件"
-                class="w-full md:w-1/2 flex bg-gray-100 rounded-xl"
+                class="w-2/3 md:w-1/2 flex bg-gray-100 rounded-xl"
                 attr:list="city"
                 style="font-family:'Noto Serif SC'"
                 on:input={debounce((e: any) => {

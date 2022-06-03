@@ -11,7 +11,7 @@ export const MainPage = () => {
     });
 
     return (
-        <section className="h-screen flex flex-col whitespace-pre-wrap relative font-song select-none ">
+        <div className="h-full flex flex-col whitespace-pre-wrap relative font-song select-none ">
             <For each={Tags()}>
                 {(tag) => {
                     return (
@@ -25,6 +25,6 @@ export const MainPage = () => {
                     );
                 }}
             </For>
-        </section>
+        </div>
     );
 };

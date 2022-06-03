@@ -50,7 +50,7 @@ export const Xmind: Plugin = function (props) {
                 </div>
             </Show>
             <div
-                class="flex-grow flex flex-col justify-center items-center h-full w-full"
+                class="flex-grow flex flex-col justify-center items-center h-full w-full overflow-auto"
                 ref={el!}></div>
         </>
     );

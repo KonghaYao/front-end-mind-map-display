@@ -28,7 +28,7 @@ export const FileType = () => {
         }));
     });
     return (
-        <section className="flex-grow flex flex-col h-full justify-center items-center whitespace-pre-wrap relative font-song select-none ">
+        <div className="flex-grow flex flex-col h-full justify-center items-center whitespace-pre-wrap relative font-song select-none ">
             <Suspense
                 fallback={
                     <div class="flex-grow flex flex-col h-full w-full justify-center items-center">
@@ -38,6 +38,6 @@ export const FileType = () => {
                 }>
                 <Init path={path} data={data()!}></Init>
             </Suspense>
-        </section>
+        </div>
     );
 };
