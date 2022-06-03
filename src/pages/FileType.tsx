@@ -6,8 +6,10 @@ import { router, routerHelper } from "../router/index";
 import { Xmind } from "../components/FileOpen/xmind";
 import { ImageViewer } from "../components/FileOpen/image";
 import { GH } from "../global";
+import { Markdown } from "../components/FileOpen/markdown";
 registerComponent(Xmind, [".xmind"]);
 registerComponent(ImageViewer, [".jpg", ".png"]);
+registerComponent(Markdown, [".md"]);
 
 export const FileType = () => {
     const path =

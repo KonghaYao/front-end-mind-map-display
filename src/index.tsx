@@ -18,11 +18,10 @@ const App = () => {
     onMount(() => {
         router.navigate(location.hash.slice(1));
     });
-    const downloadError = createMemo(() => repo.error);
     return (
-        <section className="h-screen flex flex-col relative font-song select-none ">
-            <header className="flex w-full  items-center bg-white ">
-                <div className=" px-8 py-2 ">
+        <section className="h-screen w-screen flex flex-col relative font-song select-none ">
+            <header className="flex w-full  items-center bg-white overflow-hidden">
+                <div className="px-2 md:px-8 py-2 flex-none">
                     <div className="text-2xl">前端脑图</div>
                 </div>
                 <div class="flex-grow flex justify-center">
@@ -39,7 +38,7 @@ const App = () => {
                             !isSuccess && router.navigate("/index");
                         }, 100);
                     }}
-                    class="mx-4">
+                    class="mx-4 flex-none">
                     <div class="text-gray-600 cursor-pointer">返回</div>
                 </div>
             </header>

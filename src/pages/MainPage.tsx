@@ -15,7 +15,11 @@ export const MainPage = () => {
             <For each={Tags()}>
                 {(tag) => {
                     return (
-                        <Link href={`/book/${tag}/`}>
+                        <Link
+                            href={
+                                (/\.\w+$/.test(tag) ? "/file/" : "/book/") +
+                                `${tag}/`
+                            }>
                             <FileCell path={tag}>{tag}</FileCell>
                         </Link>
                     );

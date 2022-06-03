@@ -7,7 +7,6 @@ const findRoot = () => {
     const params = decodeURIComponent(router.getCurrentLocation().hashString)
         .split("/")
         .slice(2);
-    // console.log(params);
     const path = params;
     return [get(repo()?.tree, path), path] as const;
 };
