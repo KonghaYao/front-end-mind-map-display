@@ -6,9 +6,7 @@ import json from "@rollup/plugin-json";
 import typescript from "https://esm.sh/@babel/preset-typescript";
 
 const isDev = () => globalThis.location.host.split(":")[0] === "127.0.0.1";
-const CDN = isDev()
-    ? globalThis.location.origin + "/"
-    : "https://fastly.jsdelivr.net/gh/konghayao/front-end-mind-map-display/";
+const CDN = globalThis.location.origin + "/";
 
 // Solid-js 配置
 import SolidPresets from "https://esm.sh/babel-preset-solid@1.3.13";
