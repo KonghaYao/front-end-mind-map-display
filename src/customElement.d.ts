@@ -10,6 +10,7 @@ declare module "solid-js" {
             "sl-button": any;
             "sl-input": any;
             "xy-select": any;
+            "xy-datalist": any;
             "xy-option": any;
             "xy-tips": any;
             "xy-input": any;

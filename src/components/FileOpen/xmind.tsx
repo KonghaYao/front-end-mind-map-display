@@ -1,13 +1,11 @@
 import { Plugin } from "./index";
 import {
     createEffect,
-    createMemo,
     createResource,
     createSignal,
     onMount,
     Show,
 } from "solid-js";
-import { CDN } from "../../global";
 
 // 修改一下 插件里面 的 iframe 地址，让其指向我的加速网页
 /** 原本仓库为  xmind-embed-viewer */

@@ -7,13 +7,10 @@ import { BookType } from "./pages/BookType";
 import { repo } from "./store";
 import { FileType } from "./pages/FileType";
 import { onMount } from "solid-js";
+import { SearchPage } from "./pages/SearchPage";
 /** 加载loading 的 WebComponent */
 await import("wc-spinners");
 
-/* shoelace 的样式表 */
-await loadLink(
-    "https://unpkg.com/@shoelace-style/shoelace@2.0.0-beta.73/dist/themes/light.css"
-);
 router.notFound(() => {
     router.navigate("/index");
 });
@@ -24,9 +21,15 @@ const App = () => {
     });
     return (
         <section className="h-screen flex flex-col relative font-song select-none ">
-            <header className="flex w-full justify-center bg-white ">
-                <div className="w-full px-8 py-2 ">
+            <header className="flex w-full  items-center bg-white ">
+                <div className=" px-8 py-2 ">
                     <div className="text-2xl">前端脑图</div>
+                </div>
+                <div class="flex-grow flex justify-center">
+                    <SearchPage></SearchPage>
+                </div>
+                <div onclick={() => history.back()} class="mx-4">
+                    <div class="text-gray-600 cursor-pointer">返回</div>
                 </div>
             </header>
 
