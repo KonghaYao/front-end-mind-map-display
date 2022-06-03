@@ -34,6 +34,11 @@ const ControlBar: Component = () => {
         </>
     );
 };
+import "@shoelace-style/shoelace/dist/components/split-panel/split-panel.js";
+import { loadLink } from "./utils/loadScript";
+await loadLink(
+    "https://fastly.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.74/dist/themes/light.css"
+);
 const App = () => {
     onMount(() => {
         router.navigate(location.hash.slice(1));
@@ -52,7 +57,7 @@ const App = () => {
                 </Show>
             </header>
 
-            <div className="flex-grow bg-gray-50 p-4 flex overflow-y-auto w-full noise-bg">
+            <div className="flex-grow bg-gray-50 p-4 flex overflow-y-auto w-full noise-bg h-12">
                 <Switch>
                     <Match when={repo.error}>
                         <div class="h-full w-full flex flex-col justify-center items-center">
@@ -77,11 +82,49 @@ const App = () => {
                         </div>
                     </Match>
                 </Switch>
-                <Route path="/file/*" element={FileType}></Route>
-                <Route path="/book/*" element={BookType}></Route>
-                <Route path="/index" element={MainPage}></Route>
+                <sl-split-panel class="w-full" position="25">
+                    <div slot="start">
+                        <MainPage></MainPage>
+                    </div>
+                    <div slot="end" class="p-2 h-full overflow-auto">
+                        <Route path="/file/*" element={FileType}></Route>
+                        <Route path="/book/*" element={BookType}></Route>
+                        <Route
+                            path="/index"
+                            element={() => (
+                                <div class="text-gray-400 flex flex-col h-full w-full justify-center items-center">
+                                    <div style="font-size:10vw">(*^_^*)</div>
+                                    <div>请点击左侧文件加载哦</div>
+                                </div>
+                            )}></Route>
+                    </div>
+                </sl-split-panel>
             </div>
             <footer class="p-2 flex w-full items-center bg-white overflow-hidden">
+                <div class="text-sm md:text-xs text-gray-500">
+                    <a
+                        href="https://github.com/jCodeLife/mind-map"
+                        class="text-sky-400">
+                        MindMap
+                    </a>{" "}
+                    Created By
+                    <a href="https://github.com/jCodeLife" class="text-sky-400">
+                        {" "}
+                        jCodeLife{" "}
+                    </a>
+                    |{" "}
+                    <a
+                        href="https://github.com/KonghaYao/front-end-mind-map-display"
+                        class="text-sky-400">
+                        WebSite
+                    </a>
+                    Made by
+                    <a href="https://github.com/KonghaYao" class="text-sky-400">
+                        {" "}
+                        KonghaYao{" "}
+                    </a>
+                    |
+                </div>
                 <Show when={window.screen.availWidth <= 500}>
                     <ControlBar></ControlBar>
                 </Show>
