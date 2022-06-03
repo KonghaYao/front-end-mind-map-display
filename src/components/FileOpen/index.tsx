@@ -21,7 +21,7 @@ export const FileOpen: Component<{
     const ext = getExtname(props.path);
     const comp = components.get(ext);
     return (
-        <div className="flex-grow h-full flex flex-col relative font-song select-none ">
+        <div className="flex-grow w-full h-full flex flex-col items-center justify-center relative font-song select-none ">
             <Switch fallback={<div>暂时没有解析的插件</div>}>
                 <Match when={comp}>
                     <Dynamic component={comp} {...props}></Dynamic>

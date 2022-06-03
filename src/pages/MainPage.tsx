@@ -1,11 +1,13 @@
-import { createMemo, For } from "solid-js";
+import { createEffect, createMemo, createSignal, For } from "solid-js";
 import { FileCell } from "../components/fileSystemCell";
 import { Link } from "../router/index";
 import { repo } from "../store";
 
 export const MainPage = () => {
-    const Tags = createMemo(() => {
-        return Object.keys(repo()?.tree || {});
+    const [Tags, setTag] = createSignal<string[]>([]);
+    createEffect(() => {
+        const keys = Object.keys(repo()?.tree || {});
+        setTag(keys);
     });
 
     return (

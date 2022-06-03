@@ -5,12 +5,14 @@ import { router, routerHelper } from "../router/index";
 // 配置文件查看器
 import { Xmind } from "../components/FileOpen/xmind";
 import { ImageViewer } from "../components/FileOpen/image";
+import { GH } from "../global";
 registerComponent(Xmind, [".xmind"]);
 registerComponent(ImageViewer, [".jpg", ".png"]);
 
 export const FileType = () => {
     const path =
-        "https://fastly.jsdelivr.net/gh/jCodeLife/mind-map" +
+        GH +
+        "jCodeLife/mind-map" +
         router.getCurrentLocation().hashString.replace(/^\/file/, "");
     const [data, { mutate }] = createResource<Blob>(async () => {
         return new Blob();
@@ -24,13 +26,7 @@ export const FileType = () => {
         }));
     });
     return (
-        <section className="flex-grow flex  flex-col h-full whitespace-pre-wrap relative font-song select-none ">
-            <div
-                onclick={() => {
-                    routerHelper.back();
-                }}>
-                返回
-            </div>
+        <section className="flex-grow flex flex-col h-full justify-center items-center whitespace-pre-wrap relative font-song select-none ">
             <Suspense
                 fallback={
                     <div class="flex-grow flex flex-col h-full w-full justify-center items-center">

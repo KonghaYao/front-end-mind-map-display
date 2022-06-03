@@ -10,7 +10,7 @@ export const ImageViewer: Plugin = function (props) {
     });
 
     return (
-        <div class="flex-grow ">
+        <div class="flex-grow flex flex-col justify-center items-center">
             <img
                 class="m-auto"
                 src={src()}
