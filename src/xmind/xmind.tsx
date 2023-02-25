@@ -1,4 +1,3 @@
-import { Plugin } from "./index";
 import {
     createEffect,
     createResource,
@@ -9,9 +8,9 @@ import {
 
 // 修改一下 插件里面 的 iframe 地址，让其指向我的加速网页
 /** 原本仓库为  xmind-embed-viewer */
-import { XMindEmbedViewer } from "../../utils/xmind/index";
+import { XMindEmbedViewer } from "./index";
 
-export const Xmind: Plugin = function (props) {
+export const Xmind = function (props) {
     let el: HTMLDivElement;
     const [file] = createResource(() => {
         return props.data.arrayBuffer();

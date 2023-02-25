@@ -1,22 +1,55 @@
-# 前端脑图
+# Astro Starter Kit: Basics
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/1ad3a363-e88a-47bc-9838-e4dbf7b6c34d/deploy-status)](https://app.netlify.com/sites/front-end-mind-map/deploys)
+```
+npm create astro@latest -- --template basics
+```
 
-[前端脑图](https://front-end-mind-map.netlify.app/)
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
 
-## 简单介绍
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-前端脑图是 JCodeLife 的 [mind-map](https://github.com/jCodeLife/mind-map) 项目 的线上查看网站。
+![basics](https://user-images.githubusercontent.com/4677417/186188965-73453154-fdec-4d6b-9c34-cb35c248ae5b.png)
 
-网站通过 github API 获取仓库树状结构并通过 jsdelivr 获取 JCodeLife 的 [mind-map](https://github.com/jCodeLife/mind-map) 项目中的文件，并在前端进行展示。
 
-网站由 solid-js 构建，使用 rollup-web 在浏览器端直接打包，xmind 的解析使用了一个 xmind 官网的项目改动而来，文件路径和 hash 路由路径有关，所以可以使用 url 引用到你自己的网页中。
+## 🚀 Project Structure
 
-网站适配了移动端。
+Inside of your Astro project, you'll see the following folders and files:
 
-## 已经知道的小问题
+```
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   └── Card.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   └── pages/
+│       └── index.astro
+└── package.json
+```
 
-1. 第一次打开网页非常慢，大致需要 4-10 秒，但是后面就平均 1 秒可以打开。
-2. Markdown 解析可能有点样式问题。
-3. 使用了 Web-component 所以部分设备运行不太好。
-4. Github API 在 **某些地区** 会访问失败，这个是正常现象 ：）
+Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+
+There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+
+Any static assets, like images, can be placed in the `public/` directory.
+
+## 🧞 Commands
+
+All commands are run from the root of the project, from a terminal:
+
+| Command                | Action                                           |
+| :--------------------- | :----------------------------------------------- |
+| `npm install`          | Installs dependencies                            |
+| `npm run dev`          | Starts local dev server at `localhost:3000`      |
+| `npm run build`        | Build your production site to `./dist/`          |
+| `npm run preview`      | Preview your build locally, before deploying     |
+| `npm run astro ...`    | Run CLI commands like `astro add`, `astro check` |
+| `npm run astro --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).

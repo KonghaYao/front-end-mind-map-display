@@ -1,9 +1,0 @@
-@import url("https://fastly.jsdelivr.net/npm/github-markdown-css");
-.markdown-body {
-    font-family: "Noto Serif SC" !important;
-    background-color: transparent !important;
-}
-.markdown-body img,
-.markdown-body table {
-    margin: auto !important;
-}
