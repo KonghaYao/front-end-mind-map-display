@@ -1,7 +1,31 @@
 ---
+import Header from "../components/Header.astro";
 import Layout from "../layouts/Layout.astro";
+export const prerender = true;
 ---
 
 <Layout title="Welcome to Astro.">
-    <main></main>
+    <Header />
+    <main
+        class="h-full w-full flex bg-neutral-100 items-center justify-center flex-col"
+    >
+        <h1 class="text-xl">一个 Github 文件浏览器</h1>
+        <nav class="flex">
+            <input
+                class="outline-none rounded-md p-2"
+                id="gh-input"
+                type="text"
+                placeholder="请输入 Github用户名/仓库名"
+                onblur=""
+            />
+            <script>
+                document
+                    .querySelector("#gh-input")!
+                    .addEventListener("blur", (e: any) => {
+                        const data = e.target.value;
+                        open(`/gh/${data}`);
+                    });
+            </script>
+        </nav>
+    </main>
 </Layout>

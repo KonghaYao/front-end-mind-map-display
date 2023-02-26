@@ -11,7 +11,7 @@ const [_, user, repo, path] = slug.match(/([^\/]+)\/([^\/]+)(.*)/) ?? [];
 <Layout>
     <Header />
 
-    <section class="h-full w-screen overflow-hidden flex">
+    <section class="h-full w-screen overflow-hidden flex bg-neutral-100">
         <GithubFileTree
             user={user}
             repo={repo}

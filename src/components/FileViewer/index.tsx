@@ -16,13 +16,14 @@ const registerComp = [
 export const FileViewer = (props: { path: string }) => {
     const realPath = atom(props.path);
     const comp = reflect(() => {
-        if (location.href.endsWith("/")) return () => <div>请选择文件打开</div>;
+        console.log(props.path);
+        if (props.path.endsWith("/") || location.href.endsWith("/"))
+            return () => <div>请选择文件打开</div>;
         const path = realPath();
         const comp = registerComp.find(([key, value]) => {
             console.log(path, key);
             return minimatch(path, key);
         });
-        console.log(comp);
         return comp?.[1] ?? CodeViewer;
     });
     GithubApp.register("viewer", {
