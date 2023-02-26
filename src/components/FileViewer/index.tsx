@@ -6,19 +6,22 @@ import { GithubApp } from "../GithubViewer/App";
 import { atom, reflect } from "@cn-ui/use";
 import { MarkdownViewer } from "./md";
 import { XMindViewer } from "./xmind/xmind";
-const registerComp = new Map<string, Viewer>([
-    [".md", MarkdownViewer],
-    [".xmind", XMindViewer],
-]);
+import minimatch from "minimatch";
+const registerComp = [
+    ["**/*.md", MarkdownViewer],
+    ["**/*.xmind", XMindViewer],
+] as [string, Viewer][];
 export const FileViewer = (props: { path: string }) => {
     const realPath = atom(props.path);
     const comp = reflect(() => {
-        const ext = realPath().replace(/.*(\.\w+?)$/, "$1");
-        if (ext && ext !== realPath()) {
-            return registerComp.get(ext) ?? CodeViewer;
-        } else {
-            return () => <div>请选择文件打开</div>;
-        }
+        if (location.href.endsWith("/")) return () => <div>请选择文件打开</div>;
+        const path = realPath();
+        const comp = registerComp.find(([key, value]) => {
+            console.log(path, key);
+            return minimatch(path, key);
+        });
+        console.log(comp);
+        return comp?.[1] ?? CodeViewer;
     });
     GithubApp.register("viewer", {
         open(path) {
