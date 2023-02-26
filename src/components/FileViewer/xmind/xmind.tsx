@@ -9,11 +9,13 @@ import {
 // 修改一下 插件里面 的 iframe 地址，让其指向我的加速网页
 /** 原本仓库为  xmind-embed-viewer */
 import { XMindEmbedViewer } from "./index";
+import { Viewer } from "../interface";
+import { resource } from "@cn-ui/use";
 
-export const Xmind = function (props) {
+export const XMindViewer: Viewer = function (props) {
     let el: HTMLDivElement;
-    const [file] = createResource(() => {
-        return props.data.arrayBuffer();
+    const file = resource(() => {
+        return props.getData().then((res) => res.arrayBuffer());
     });
     let Control: XMindEmbedViewer;
 
@@ -42,9 +44,8 @@ export const Xmind = function (props) {
 
     return (
         <>
-            <Show when={loading()}>
+            <Show when={!file.isReady()}>
                 <div class="absolute top-0 left-0 h-full w-full flex flex-col justify-center items-center">
-                    <flower-spinner></flower-spinner>
                     <div>加载 xmind 中</div>
                 </div>
             </Show>

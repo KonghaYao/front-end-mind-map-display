@@ -15,14 +15,15 @@ export const GithubFileTree = (props: {
     path: string;
 }) => {
     const branch = atom("");
-    // 当末尾为 / 时是文件夹，而程序只判断文件夹即可
+
     const newPath = (props.path ?? "").split("/").filter(Boolean);
     const path = atom<string[]>(
-        props.path.endsWith("/")
+        // 因为 astro 处理的时候忽略了最后的一个 / 号，所以我们换成客户端识别尾部 / 作为文件夹
+        location.href.endsWith("/")
             ? newPath
             : newPath.slice(0, newPath.length - 1)
     );
-
+    // createEffect(() => console.log(props.path, newPath, path()));
     const pathString = reflect(() => {
         if (path().length) {
             return "/" + path().join("/") + "/";
@@ -30,13 +31,15 @@ export const GithubFileTree = (props: {
             return "/";
         }
     });
+    /** 获取指定的字符串 */
     const getBaseString = () => {
         return `/${props.user}/${props.repo}${pathString()}`;
     };
-    // 加载地址
-    useEffectWithoutFirst(() => {
-        updateHistory(`/gh/${getBaseString()}`);
-    }, [pathString, () => props.user, () => props.repo]);
+    // 保存地址到地址栏
+    useEffectWithoutFirst(
+        () => updateHistory(`/gh/${getBaseString()}`),
+        [pathString, () => props.user, () => props.repo]
+    );
     const data = resource(
         () =>
             fetch(
@@ -58,7 +61,7 @@ export const GithubFileTree = (props: {
                 <Show when={data.isReady()}>
                     <div
                         class="cursor-pointer"
-                        onClick={() => path((i) => i.slice(0, i.length - 2))}>
+                        onClick={() => path((i) => i.slice(0, i.length - 1))}>
                         上一个页面
                     </div>
                     <For each={data()}>

@@ -5,7 +5,11 @@ import { onMount } from "solid-js";
 import { GithubApp } from "../GithubViewer/App";
 import { atom, reflect } from "@cn-ui/use";
 import { MarkdownViewer } from "./md";
-const registerComp = new Map<string, Viewer>([[".md", MarkdownViewer]]);
+import { XMindViewer } from "./xmind/xmind";
+const registerComp = new Map<string, Viewer>([
+    [".md", MarkdownViewer],
+    [".xmind", XMindViewer],
+]);
 export const FileViewer = (props: { path: string }) => {
     const realPath = atom(props.path);
     const comp = reflect(() => {
