@@ -10,9 +10,8 @@ import { GithubApp } from "./App";
 export interface GithubExplorer {}
 
 export const GithubFileTree = (props: { user: string; repo: string }) => {
-    const shaStack = atom([]);
-    const sha = atom("master");
-    const path = ArrayAtom(atom([]));
+    const branch = atom("");
+    const path = ArrayAtom(atom<string[]>([]));
     const pathString = reflect(() => {
         if (path().length) {
             return "/" + path().join("/");
@@ -23,8 +22,9 @@ export const GithubFileTree = (props: { user: string; repo: string }) => {
     const data = resource(
         () =>
             fetch(
-                `https://api.github.com/repos/${props.user}/${props.repo}/git/trees/` +
-                    sha(),
+                `https://api.github.com/repos/${props.user}/${
+                    props.repo
+                }/contents${pathString()}`,
                 {
                     cache: "force-cache",
                 }
@@ -38,10 +38,14 @@ export const GithubFileTree = (props: { user: string; repo: string }) => {
         <aside class="w-40 text-ellipsis whitespace-nowrap  h-full p-2 bg-white flex flex-col cursor-default border-r border-neutral-400">
             <ul>
                 <Show when={data.isReady()}>
-                    <div>上一个页面</div>
-                    <For each={data()?.tree}>
+                    <div
+                        class="cursor-pointer"
+                        onClick={() => path((i) => i.slice(0, i.length - 2))}>
+                        上一个页面
+                    </div>
+                    <For each={data()}>
                         {(item) => {
-                            const isFile = item.type === "blob";
+                            const isFile = item.type === "file";
                             const src =
                                 "https://cdn.jsdelivr.net/gh/vscode-icons/vscode-icons@12.2.0/icons/" +
                                 (isFile
@@ -49,17 +53,15 @@ export const GithubFileTree = (props: { user: string; repo: string }) => {
                                     : getIconForFolder(item.path));
                             return (
                                 <li
-                                    class="cursor-pointer hover:bg-neutral-100 transition-colors flex items-center "
+                                    class="cursor-pointer hover:bg-neutral-100 transition-colors flex items-center overflow-hidden whitespace-nowrap text-ellipsis"
                                     onClick={() => {
                                         if (isFile) {
                                             GithubApp.getApp("viewer")?.open(
-                                                sha()
+                                                item.sha
                                             );
                                         } else {
                                             batch(() => {
                                                 path((i) => [...i, item.path]);
-                                                shaStack((i) => [...i, sha()]);
-                                                sha(item.sha);
                                             });
                                         }
                                     }}>
@@ -69,7 +71,7 @@ export const GithubFileTree = (props: { user: string; repo: string }) => {
                                         alt=""
                                         srcset=""
                                     />
-                                    {item.path}
+                                    {item.name}
                                 </li>
                             );
                         }}
