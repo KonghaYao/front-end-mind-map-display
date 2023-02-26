@@ -89,7 +89,7 @@ export const GithubFileTree = (props: {
                                             );
                                         } else {
                                             batch(() => {
-                                                path((i) => [...i, item.path]);
+                                                path((i) => [...i, item.name]);
                                             });
                                         }
                                     }}>
