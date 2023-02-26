@@ -1,16 +1,6 @@
-import {
-    ArrayAtom,
-    atom,
-    reflect,
-    resource,
-    useEffectWithoutFirst,
-} from "@cn-ui/use";
+import { atom, reflect, resource, useEffectWithoutFirst } from "@cn-ui/use";
 import { For, Show, batch, createEffect, onMount } from "solid-js";
-import {
-    getIconForFolder,
-    getIconForFile,
-    getIconForOpenFolder,
-} from "vscode-icons-js";
+import { getIconForFolder, getIconForFile } from "vscode-icons-js";
 import { GithubApp } from "./App";
 
 export interface GithubExplorer {}

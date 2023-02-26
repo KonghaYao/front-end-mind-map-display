@@ -14,6 +14,7 @@
 		"@astrojs/solid-js": "^2.0.2",
 		"@astrojs/tailwind": "^3.0.1",
 		"@cn-ui/core": "^1.7.0",
+		"@cn-ui/markdown": "^1.0.0",
 		"@cn-ui/monaco": "^1.7.4",
 		"@cn-ui/use": "^2.0.1",
 		"astro": "^2.0.15",

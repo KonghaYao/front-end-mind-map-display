@@ -4,7 +4,8 @@ import { CodeViewer } from "./code";
 import { onMount } from "solid-js";
 import { GithubApp } from "../GithubViewer/App";
 import { atom, reflect } from "@cn-ui/use";
-const registerComp = new Map<string, Viewer>([]);
+import { MarkdownViewer } from "./md";
+const registerComp = new Map<string, Viewer>([[".md", MarkdownViewer]]);
 export const FileViewer = (props: { path: string }) => {
     const realPath = atom(props.path);
     const comp = reflect(() => {
