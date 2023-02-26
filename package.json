@@ -18,6 +18,7 @@
 		"@cn-ui/monaco": "^1.7.4",
 		"@cn-ui/use": "^2.0.1",
 		"astro": "^2.0.15",
+		"awesome-image-viewer": "^1.0.60",
 		"minimatch": "^7.1.4",
 		"parse-filepath": "^1.0.2",
 		"solid-js": "^1.4.3",

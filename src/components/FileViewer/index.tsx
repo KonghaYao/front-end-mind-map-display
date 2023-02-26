@@ -7,9 +7,11 @@ import { atom, reflect } from "@cn-ui/use";
 import { MarkdownViewer } from "./md";
 import { XMindViewer } from "./xmind/xmind";
 import minimatch from "minimatch";
+import { ImageViewer } from "./image";
 const registerComp = [
     ["**/*.md", MarkdownViewer],
     ["**/*.xmind", XMindViewer],
+    ["**/*.+(jpg|jpeg|png|webp|gif|svg)", ImageViewer],
 ] as [string, Viewer][];
 export const FileViewer = (props: { path: string }) => {
     const realPath = atom(props.path);
