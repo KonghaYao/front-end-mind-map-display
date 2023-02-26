@@ -1,5 +1,11 @@
-import { ArrayAtom, atom, reflect, resource } from "@cn-ui/use";
-import { For, Show, batch, onMount } from "solid-js";
+import {
+    ArrayAtom,
+    atom,
+    reflect,
+    resource,
+    useEffectWithoutFirst,
+} from "@cn-ui/use";
+import { For, Show, batch, createEffect, onMount } from "solid-js";
 import {
     getIconForFolder,
     getIconForFile,
@@ -8,17 +14,39 @@ import {
 import { GithubApp } from "./App";
 
 export interface GithubExplorer {}
+export const updateHistory = (url: string) => {
+    const newURL = new URL(url, location.origin);
+    history.pushState({ status: 0 }, "", newURL);
+};
 
-export const GithubFileTree = (props: { user: string; repo: string }) => {
+export const GithubFileTree = (props: {
+    user: string;
+    repo: string;
+    path: string;
+}) => {
     const branch = atom("");
-    const path = ArrayAtom(atom<string[]>([]));
+    // 当末尾为 / 时是文件夹，而程序只判断文件夹即可
+    const newPath = (props.path ?? "").split("/").filter(Boolean);
+    const path = atom<string[]>(
+        props.path.endsWith("/")
+            ? newPath
+            : newPath.slice(0, newPath.length - 1)
+    );
+
     const pathString = reflect(() => {
         if (path().length) {
-            return "/" + path().join("/");
+            return "/" + path().join("/") + "/";
         } else {
-            return "";
+            return "/";
         }
     });
+    const getBaseString = () => {
+        return `/${props.user}/${props.repo}${pathString()}`;
+    };
+    // 加载地址
+    useEffectWithoutFirst(() => {
+        updateHistory(`/gh/${getBaseString()}`);
+    }, [pathString, () => props.user, () => props.repo]);
     const data = resource(
         () =>
             fetch(
@@ -56,8 +84,15 @@ export const GithubFileTree = (props: { user: string; repo: string }) => {
                                     class="cursor-pointer hover:bg-neutral-100 transition-colors flex items-center overflow-hidden whitespace-nowrap text-ellipsis"
                                     onClick={() => {
                                         if (isFile) {
+                                            updateHistory(
+                                                `/gh/${getBaseString()}${
+                                                    item.name
+                                                }`
+                                            );
                                             GithubApp.getApp("viewer")?.open(
-                                                item.sha
+                                                `https://cdn.jsdelivr.net/gh/${getBaseString()}${
+                                                    item.name
+                                                }`
                                             );
                                         } else {
                                             batch(() => {

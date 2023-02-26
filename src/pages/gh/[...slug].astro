@@ -1,15 +1,25 @@
 ---
+import { FileViewer } from "../../components/FileViewer/index";
 import { GithubFileTree } from "../../components/GithubViewer/GithubFileTree";
 import Header from "../../components/Header.astro";
 import Layout from "../../layouts/Layout.astro";
 
 const { slug } = Astro.params;
-const [_, user, repo, path] = slug.match(/(.+)\/(.+)/) ?? [];
+const [_, user, repo, path] = slug.match(/([^\/]+)\/([^\/]+)(.*)/) ?? [];
 ---
 
 <Layout>
     <Header />
-    <section class="h-full w-screen overflow-hidden">
-        <GithubFileTree user={user} repo={repo} client:load />
+    <section class="h-full w-screen overflow-hidden flex">
+        <GithubFileTree
+            user={user}
+            repo={repo}
+            path={path}
+            client:only="solid"
+        />
+        <FileViewer
+            path={`https://cdn.jsdelivr.net/gh/${user}/${repo}/${path}`}
+            client:only="solid"
+        />
     </section>
 </Layout>

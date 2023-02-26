@@ -14,10 +14,15 @@
 		"@astrojs/solid-js": "^2.0.2",
 		"@astrojs/tailwind": "^3.0.1",
 		"@cn-ui/core": "^1.7.0",
+		"@cn-ui/monaco": "^1.7.4",
 		"@cn-ui/use": "^2.0.1",
 		"astro": "^2.0.15",
+		"parse-filepath": "^1.0.2",
 		"solid-js": "^1.4.3",
 		"tailwindcss": "^3.0.24",
 		"vscode-icons-js": "^11.6.1"
+	},
+	"devDependencies": {
+		"@types/parse-filepath": "^1.0.0"
 	}
 }
