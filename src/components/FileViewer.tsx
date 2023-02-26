@@ -1,3 +1,3 @@
-export const FileViewer = () => {
+export const FileViewer = (content) => {
     return <div></div>;
 };
