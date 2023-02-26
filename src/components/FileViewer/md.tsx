@@ -6,8 +6,8 @@ import "@cn-ui/core/dist/style.css";
 export const MarkdownViewer: Viewer = (props) => {
     const code = resource(() => props.getData().then((res) => res.text()));
     return (
-        <div class="max-w-4xl m-auto">
-            <Typography>
+        <div class=" flex justify-center flex-1">
+            <Typography class="max-w-4xl">
                 <Markdown code={code}></Markdown>
             </Typography>
         </div>
