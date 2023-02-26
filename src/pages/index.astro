@@ -23,7 +23,7 @@ export const prerender = true;
                     .querySelector("#gh-input")!
                     .addEventListener("blur", (e: any) => {
                         const data = e.target.value;
-                        open(`/gh/${data}`);
+                        location.href = `/gh/${data}`;
                     });
             </script>
         </nav>

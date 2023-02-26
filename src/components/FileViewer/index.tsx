@@ -16,12 +16,12 @@ const registerComp = [
 export const FileViewer = (props: { path: string }) => {
     const realPath = atom(props.path);
     const comp = reflect(() => {
-        console.log(props.path);
+        console.log(props.path, location.href);
         if (props.path.endsWith("/") || location.href.endsWith("/"))
             return () => <div>请选择文件打开</div>;
         const path = realPath();
         const comp = registerComp.find(([key, value]) => {
-            console.log(path, key);
+            // console.log(path, key);
             return minimatch(path, key);
         });
         return comp?.[1] ?? CodeViewer;
