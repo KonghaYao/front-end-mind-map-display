@@ -18,7 +18,7 @@ const [_, user, repo, path] = slug.match(/([^\/]+)\/([^\/]+)(.*)/) ?? [];
             client:only="solid"
         />
         <FileViewer
-            path={`https://cdn.jsdelivr.net/gh/${user}/${repo}/${path}`}
+            path={`https://fastly.jsdelivr.net/gh/${user}/${repo}/${path}`}
             client:only="solid"
         />
     </section>
